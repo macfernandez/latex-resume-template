@@ -1,0 +1,178 @@
+\usepackage{academicons}
+\usepackage{adjustbox}      % to adjust boxed content
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{calc}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage{fontawesome}    % for icons
+\usepackage{geometry}       % easy and flexible user interface to customize page layout
+\usepackage{hyperref}
+\usepackage{lipsum}         % only for template needs
+\usepackage{multicol}
+\usepackage{qrcode}
+\usepackage{tcolorbox}      % environment for coloured and framed text boxes with a heading line
+\usepackage{tikz}           % tool to create graphic elements
+\usepackage{xcolor}
+\usepackage{xifthen}        % for isempty test
+
+%%%%%%%%%% page style and fonts
+
+\geometry{
+    a4paper,
+    left=0.1cm,
+    right=0.5cm,
+    top=-0.05cm,
+    bottom=0cm
+}
+
+\tikzset{
+  contactIcon/.style={%
+    minimum height=\baselineskip,
+  }
+}
+
+\definecolor{sideBarColor}{rgb}{0.36,0.54,0.76}
+
+\newcommand\tthash{\text{\ttfamily\#}}
+
+
+%%%%%%%%%% new commands
+
+\newcommand{\Space}[0]{\ }%
+\newcommand{\CarriageReturn}[0]{\?}%
+
+%%%%% QR code
+\newcommand{\addqr}{
+    \scriptsize
+    \begin{center}
+        \quad
+        \qrcode[nolink, height=2cm]{
+            Info you want\Space\CarriageReturn
+            in QR code
+        }
+        \vspace*{0.5cm}
+    \end{center}
+    \centering
+    Copy my contact information.
+}
+
+%%%%% educationentry
+% input: description (op.), degree, country, institution, period
+\newcommand{\educationentry}[5][]{
+    \par\noindent
+    \textbf{\normalsize{\color{sideBarColor}{#2}}}
+	\hfill {\footnotesize\faMapMarker ~ #3}
+    \hfill\\[1.5pt]
+    \textbf{\small #4 | #5}
+    \hfill\\[3pt]
+    \ifthenelse{\isempty{#1}}
+        {}
+        {\small{#1}}
+    \newline
+}
+
+%%%%% header
+\newcommand{\header}[2]{
+	{
+        \color{sideBarColor}{
+            \Huge{#1}
+	        \vspace*{0.2cm}
+	        \newline
+	        \LARGE{#2}
+        }
+    }
+    \vspace*{0.5cm}
+	\newline
+}
+
+%%%%% my contact info
+\newcommand{\mycontactinfo}[1]{
+    \sideruleline{#1}
+    \begin{tikzpicture}[every node/.style={inner sep=1pt}]
+        \matrix (contact) [
+            ampersand replacement=\&,
+	    	column 1/.style={anchor=west,contactIcon},
+	    	column 2/.style={anchor=west,align=left,contactIcon},
+	    	column sep=5pt,
+	    	row sep=3pt
+	    ]{\\
+            \node{\normalsize{\faPhone}}; \& \node{\normalsize{+xx xx xxxx xxxx}};\\
+            \node{\normalsize{\faEnvelopeO}}; \& \node{\href{mailto:your-email@mail.com}{\normalsize{your-address@mail.com}}};\\
+            \node{\normalsize{\faLinkedinSquare}}; \& \node{\href[pdfnewwindow=true]{https://www.linkedin.com/in/your-username/}{\normalsize{linkedin/in/your-username}}};\\
+            \node{\normalsize{\faGithub}}; \& \node{\href[pdfnewwindow=true]{https://github.com/your-username}{\normalsize{github.com/your-username}}};\\
+            \node{\normalsize{\faMapMarker}}; \& \node{\normalsize{Your Location}};\\
+        };
+    \end{tikzpicture}
+}
+
+%%%%% my picture
+\newcommand{\mypicture}[1]{
+    \begin{center}
+            \begin{tikzpicture}
+                \node[
+                    circle,
+                    minimum size=4cm,
+                    path picture={
+                        \node at (path picture bounding box.center){
+                            \includegraphics[width=4cm]{#1}
+                        };
+                    }
+                ]{};
+            \end{tikzpicture}
+            \end{center}
+}
+
+%%%%% presentation
+\newcommand{\presentation}[2]{
+    \Large{#1}
+	\vspace*{0.3cm}
+	\newline
+	\small{#2}
+}
+
+%%%%% sideruleline
+\makeatletter
+\newcommand{\sideruleline}[1]{
+    \par\noindent
+    \hrulefill\newline
+	\LARGE{#1}
+    \vspace*{0.25cm}
+    \newline
+}
+\makeatother
+
+%%%%% titlesection
+\makeatletter
+\newcommand{\titlesection}[1]{
+    \par\noindent
+    %\hrulefill\newline
+	\LARGE{#1}
+    \vspace*{0.5cm}
+}
+\makeatother
+
+%%%%% workexperienceentry
+% input: title, company, location, period, description
+\newcommand{\workexperienceentry}[5]{
+    \par\noindent
+    \textbf{\normalsize{\color{sideBarColor}{#1}}}
+	\hfill {\footnotesize\faMapMarker ~ #3}
+    \hfill\\[1.5pt]
+    \textbf{\small #2 | #4}
+    \hfill\\[3pt]
+    \small{#5}
+    \newline
+}
+
+%%%%% contributionentry
+% input: repo, PR#, link, date, description
+\newcommand{\contributionentry}[5]{
+    \par\noindent
+    \textbf{\normalsize{\color{sideBarColor}{#1}}}
+    \hfill\\[1.5pt]
+    \textbf{\small PR: \href[pdfnewwindow=true]{#3}{\normalsize{\tthash#2}} | Merged: #4}
+    \hfill\\[3pt]
+    \small{#5}
+    \newline
+}
