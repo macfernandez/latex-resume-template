@@ -1,10 +1,8 @@
 # Resume Template
 
-This is my template for generating a Resume with Latex.
+This is my template for generating a résumé with Latex.
 
-For compiling, use the default cofiguration.
-
-For compiling:
+For compiling, use the default configuration:
 
 ```
 pdflatex main.tex
