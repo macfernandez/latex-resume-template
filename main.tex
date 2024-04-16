@@ -1,120 +1,160 @@
-\documentclass[11 pt,oneside,a4paper,titlepage]{article}
+\documentclass[11pt,a4paper]{article}
 
 \usepackage{preamble}
 
-\graphicspath{{pictures}}
-
 \begin{document}
 
-%%%%% First Page
-\hspace*{-1cm}
-%% Side Bar
-\adjustbox{valign=t}{
-    \colorbox{sideBarColor!40}{
-        \begin{minipage}[t][\textheight-2\fboxsep-2\fboxrule][t]{0.33\textwidth}
-        \vspace*{1cm}
-        \begin{center}
-        \begin{minipage}[t][4.5cm][t]{0.9\textwidth}
-            \mypicture{photo.png}
-        \end{minipage}
-        \end{center}
-        \begin{center}
-        \begin{minipage}[t]{0.9\textwidth}
-            \mycontactinfo{Contact}
-        \end{minipage}
-        \end{center}
-        \vspace*{12cm}
-        \addqr
-        \end{minipage}
-    }
-}
-\hspace*{\fill}
-%% Main section
-\adjustbox{valign=t,left}{
-    \begin{minipage}[t][5.35cm][t]{0.63\textwidth}
-    \vspace*{1.5cm}
-    \header{Your Name}{Job Title}
-    \presentation{Career goals}{Here goes your career goals.}
-    % this could be to be adjusted
-    \vspace*{1.6cm}
-    \vspace*{\fill}\hrule\vspace*{0.3cm}
-    
-    \titlesection{{\faSuitcase} Work Experience}
-    \workexperienceentry{Job Title \#1}{Company}{Location}{From date -- To date}{\lipsum[75]\\Tech: Technlogy used.}
-    \workexperienceentry{Job Title \#2}{Company}{Location}{From date -- To date}{\lipsum[75]\\Tech: Technlogy used.}
-    \workexperienceentry{Job Title \#3}{Company}{Location}{From date -- To date}{\lipsum[75]\\Tech: Technlogy used.}
+%%%% HEADER
+\begin{minipage}[t]{18cm}%
+    \adjustbox{valign=t}{%
+        \mypicture{4}{pictures/photo.png}%
+    }%
+    \hspace*{0.25cm}%
+    \adjustbox{valign=t, left}{%
+        \begin{minipage}[t][4cm]{10cm}%
+            \headtitle%
+                {Your Name}%
+                {Job Title}%
+                {Here goes your career goals.}%
+        \end{minipage}%
+        \hspace*{-0.25cm}%
+        \begin{minipage}[t][4cm]{3.5cm}%
+            \vspace*{-0.4cm}%
+            \contactinfo%
+        \end{minipage}%
+    }%
+\end{minipage}%
+\par%
+\vspace*{0.7cm}
 
-    \vspace*{\fill}\hrule\vspace*{0.3cm}
+%%%% SECTIONS
+\begin{minipage}[t][20cm]{7cm}%
+    \sectiontitle{\faDesktop}{TECHNOLOGY SKILLS}%
+    \vspace*{0.1cm}%
+    \begin{itemize}[%
+        leftmargin=*,%
+        rightmargin=1cm,%
+        label=\textcolor{\defaultcolor}{\textbullet}%
+        ]%
+        \item \technology%
+            {Skills}%
+            {
+                {\cvskill{Skill \#1}{5}}\\%
+                {\cvskill{Skill \#2}{4}}\\%
+                {\cvskill{Skill \#3}{2.5}}\\%
+                {\cvskill{Skill \#4}{1}}%
+            }
+        \item \technology%
+            {Other Skills}%
+            {Skill \#1, \ldots, skill \#n}%
+    \end{itemize}%
+    \vspace*{0.3cm}%
+    \sectiontitle{\faLanguage}{LANGUAGES}%
+    \vspace*{0.1cm}%
+    \begin{itemize}[label=\textcolor{\defaultcolor}{\textbullet},noitemsep]%
+        \item Language \#1: level%
+        \item Language \#2: level%
+    \end{itemize}%
+    \vspace*{0.3cm}%
+    \sectiontitle{\faUniversity}{OTHER EXPERIENCE}%
+    \vspace*{0.1cm}%
+    \begin{itemize}[%
+        leftmargin=*,%
+        rightmargin=1cm,%
+        label=\textcolor{\defaultcolor}{\textbullet}%
+        ]%
+        \item[\linkedlist{a}]\otherexperienceentry%
+            {Experience \#1}%
+            {Institution}%
+            {From date--To date}%
+            {Experience description.}%
+        \item[\linkedlist{b}]\otherexperienceentry%
+            {Experience \#2}%
+            {Institution}%
+            {From date--To date}%
+            {Experience description.}%
+        \item\otherexperienceentry%
+            {Experience \#3 (non-related)}%
+            {Institution}%
+            {From date--To date}%
+            {Experience description.}%
+    \end{itemize}%
+    \begin{tikzpicture}[remember picture,overlay]%
+        \draw[gray, shorten >=1mm, shorten <=1mm] (a)--(b);%
+    \end{tikzpicture}%
+\end{minipage}%
+\begin{minipage}[t][20cm]{11cm}%
+    \sectiontitle{\faSuitcase}{WORK EXPERIENCE}%
+    \vspace*{0.1cm}%
+    \begin{itemize}[%
+        leftmargin=*,%
+        rightmargin=-1cm,%
+        label=\textcolor{\defaultcolor}{\textbullet},%
+        itemsep=-0.3cm%
+        ]%
+        \item \workexperienceentry%
+            {Job Title \#1}%
+            {Company}%
+            {From date--To date}%
+            {%
+                \begin{multicols}{2}%
+                    \begin{itemize}[label=$\circ$]%
+                        \item Task \#1%
+                        \item Task \#2%
+                        \item Task \#3%
+                    \end{itemize}%
+                \end{multicols}%
+            }%
+        \item[\linkedlist{a}]\workexperienceentry%
+            {Job Title \#2}%
+            {Company}%
+            {From date--To date}%
+            {%
+                \begin{multicols}{2}%
+                    \begin{itemize}[label=$\circ$]%
+                        \item Task \#1%
+                        \item Task \#2%
+                    \end{itemize}%
+                \end{multicols}%
+            }%
+        \item[\linkedlist{b}]\workexperienceentry%
+            {Job Title \#3}%
+            {Company}%
+            {From date--To date}%
+            {%
+                \begin{multicols}{2}%
+                    \begin{itemize}[label=$\circ$]%
+                        \item Task \#1%
+                        \item Task \#2%
+                        \item Task \#3%
+                        \item Task \#4%
+                    \end{itemize}%
+                \end{multicols}%
+            }%
+    \end{itemize}%
+    \vspace*{0.3cm}%
+    \begin{tikzpicture}[remember picture,overlay]%
+        \draw[gray, shorten >=1mm, shorten <=1mm] (a)-- (b);%
+    \end{tikzpicture}%
+    \sectiontitle{\faGraduationCap}{EDUCATION}%
+    \vspace*{0.1cm}%
+    \begin{itemize}[%
+        listparindent=1.5em,%
+        leftmargin=*,%
+        rightmargin=0cm,%
+        label=\textcolor{\defaultcolor}{\textbullet}%
+        ]%
+        \item \educationentry%
+            {Academic Degree \#1}%
+            {Institution}%
+            {From date--To date}%
+            {Add some information here.}%
+        \item \educationentry%
+            {Academic Degree \#2}%
+            {Institution}%
+            {From date--To date}%
+            {Add some information here.}%
+    \end{itemize}%
+\end{minipage}%
 
-    \titlesection{{\faGraduationCap} Education}
-    \educationentry[Add some information here.]{Academic Degree \#1}{Location}{Institution}{From date -- To date}
-    \educationentry{Academic Degree \#2}{Location}{Institution}{From date -- To date}
-
-    \vspace*{\fill}\hrule\vspace*{0.3cm}
-
-    \titlesection{{\faCode} Open Source Contributions}
-    \contributionentry{Repository}{PR--number}{link-to-PR}{Date of merging}{\raggedright Description.}
-    \end{minipage}
-}
-\newpage
-%%%%% Second Page
-\hspace*{-1cm}
-%% Side Bar
-\adjustbox{valign=t}{
-    \colorbox{sideBarColor!40}{
-        \begin{minipage}[t][\textheight-2\fboxsep-2\fboxrule][t]{0.33\textwidth}
-        \vspace*{1cm}
-        \begin{center}
-        \begin{minipage}[t][4.5cm][t]{0.9\textwidth}
-            \mypicture{photo.png}
-        \end{minipage}
-        \end{center}
-        \begin{center}
-        \begin{minipage}[t]{0.9\textwidth}
-            \mycontactinfo{Contact}
-        \end{minipage}
-        \end{center}
-        \vspace*{12cm}
-        \addqr
-        \end{minipage}
-    }
-}
-\hspace*{\fill}
-%% Main section
-\adjustbox{valign=t,left}{
-    \begin{minipage}[t][5.35cm][t]{0.63\textwidth}
-    \vspace*{1.5cm}
-    \header{Your Name}{Job Title}
-    \vspace*{0.3cm}
-
-    \vspace*{\fill}\hrule\vspace*{0.3cm}
-
-    \titlesection{{\faDesktop} Technlogy Skills}
-    \vspace{-8mm}
-    \begin{multicols}{2}
-        {\raggedright\normalsize\begin{description}[
-            style=nextline, leftmargin=0pt, format=\color{sideBarColor}
-            ]
-            \item[Programming languages] Python, Javascript
-            \item[Version Control] Git
-            \item[Operative Systems] Linux
-        \end{description}}
-    \end{multicols}
-
-    \vspace*{\fill}\hrule\vspace*{0.3cm}
-
-    \titlesection{{\faLanguage} Languages}
-    \vspace{-8mm}
-    \begin{multicols}{3}
-        {\raggedright\normalsize\begin{description}[
-            style=nextline, leftmargin=0pt, format=\color{sideBarColor}
-            ]
-            \item[Language \#1] Level
-            \item[Language \#2] Level
-            \item[Language \#3] Level
-        \end{description}}
-    \end{multicols}
-    \end{minipage}
-}
-
-\end{document}
+\end{document}%
